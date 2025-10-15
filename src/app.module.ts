@@ -3,6 +3,8 @@ import { OrdersModule } from './orders/orders.module';
 import { SeedModule } from './seed/seed.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
+import { Order } from './orders/entities/order.entity';
+import { OrderItem } from './orders/entities/order-item.entity';
 
 
 @Module({
@@ -19,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
         database: process.env.DB_NAME,
         synchronize: true,
         autoLoadModels: true,
-        models: [],
+        models: [Order,OrderItem],
       })
   ],
   controllers: [],
