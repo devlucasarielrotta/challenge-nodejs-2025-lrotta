@@ -7,12 +7,12 @@ export class OrderItem extends Model {
 
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.UUIDV4 })
   declare id: string;
 
   @AllowNull(false)
   @ForeignKey(() => Order)
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.UUIDV4 })
   declare orderId: string;
 
   @BelongsTo(() => Order, {

@@ -5,11 +5,13 @@ import { OrderStatus } from './enums/orderStatus.enum';
 
 
 
-@Table
+@Table({
+    timestamps:true
+})
 export class Order extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column({ type: DataType.UUID })
+  @Column({ type: DataType.UUIDV4 })
   declare id: string;
 
   @AllowNull(false)
@@ -22,4 +24,5 @@ export class Order extends Model {
 
   @HasMany(() => OrderItem, { onDelete: 'CASCADE', as: 'items' })
   declare items: OrderItem[];
+
 }
