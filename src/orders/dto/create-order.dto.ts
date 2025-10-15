@@ -1,6 +1,7 @@
 import { IsArray, IsNotEmpty, IsString, ValidateNested } from "class-validator";
-import { CreateOrderItemDto } from "./create-order-item.dto";
 import { Type } from "class-transformer";
+
+import { CreateOrderItemDto } from "./create-order-item.dto";
 
 export class CreateOrderDto {
 
