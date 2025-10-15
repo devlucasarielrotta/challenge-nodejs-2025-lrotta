@@ -2,11 +2,10 @@ import { Inject, Injectable, InternalServerErrorException, Logger, NotFoundExcep
 import { InjectConnection, InjectModel } from '@nestjs/sequelize';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
-import { Sequelize , Op} from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderItem } from './entities/order-item.entity';
 
 import { OrderStatus } from './entities/enums/orderStatus.enum';
@@ -47,16 +46,18 @@ export class OrdersService {
         {
           clientName: createOrderDto.clientName,
           status: OrderStatus.INITIATED,
+          items: createOrderDto.items.map(item => ({
+            description: item.description,
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+          })),
         },
-        { transaction },
+        {
+          include: [{ model: OrderItem, as: 'items' }],
+          transaction,
+        },
       );
 
-      const items = createOrderDto.items.map(item => ({
-        ...item,
-        orderId: order.id
-      }));
-
-      await this.orderItemModeL.bulkCreate(items, { transaction })
       await transaction.commit();
       this.logger.log(`Orden creada exitosamente con ID ${order.id}`);
 
@@ -70,43 +71,68 @@ export class OrdersService {
 
   async findOne(id: string): Promise<Order> {
     const order = await this.orderModel.findByPk(id, {
-        include: [OrderItem],
+      include: [OrderItem],
     });
 
     if (!order) {
-        this.logger.warn(`Orden con ID ${id} no encontrada.`);
-        throw new NotFoundException(`Orden con ID ${id} no encontrada.`);
+      this.logger.warn(`Orden con ID ${id} no encontrada.`);
+      throw new NotFoundException(`Orden con ID ${id} no encontrada.`);
     }
-    
+
     this.logger.log(`Orden ${id} encontrada exitosamente.`);
     return order;
   }
 
-  async findAll(): Promise<Order[]> {
-    const cacheKey = 'orders:active';
-    const cached = await this.cacheManager.get<Order[]>(cacheKey);
-
+  async findAll(): Promise<{ orders: Order[]; total: number }> {
+    const cached = await this.cacheManager.get<{ orders: Order[], total: number }>(OrdersService.CACHE_KEY_ACTIVE_ORDERS);
     if (cached) {
       this.logger.log('Órdenes obtenidas desde caché');
       return cached;
     }
 
-    const orders = await this.orderModel.findAll({
-      where: { status: { [Op.ne]: OrderStatus.DELIVERED } },
-      include: [OrderItem],
-      order: [['createdAt', 'DESC']],
-    });
+    const [orders, total] = await Promise.all([
+      this.orderModel.findAll({
+        where: { status: { [Op.ne]: OrderStatus.DELIVERED } },
+        include: [OrderItem],
+        order: [['createdAt', 'DESC']],
+      }),
+      this.orderModel.count({
+        where: { status: { [Op.ne]: OrderStatus.DELIVERED } },
+      }),
+    ]);
 
-    await this.cacheManager.set(cacheKey, orders, 30_000);
+    await this.cacheManager.set(OrdersService.CACHE_KEY_ACTIVE_ORDERS, { orders, total }, 30_000);
     this.logger.log('Órdenes guardadas en caché');
 
-    return orders;
+    return { total, orders  };
   }
 
 
-  remove(id: string) {
-    return `This action removes a #${id} order`;
+
+  async advanceStatus(id: string): Promise<string> {
+
+    const order = await this.findOne(id)
+
+    const nextStatus = OrdersService.advanceStatusOrder(order.status);
+
+    if (nextStatus === OrderStatus.DELIVERED) {
+      await this.orderModel.destroy({ where: { id } });
+      await this.cacheManager.del(OrdersService.CACHE_KEY_ACTIVE_ORDERS);
+
+      this.logger.log(`Orden ${id} entregada y eliminada.`);
+      return `Orden ${id} entregada (eliminada del sistema).`;
+    }
+
+
+    order.status = nextStatus;
+    await order.save();
+
+    await this.cacheManager.del(OrdersService.CACHE_KEY_ACTIVE_ORDERS);
+
+    this.logger.log(`Orden ${id} actualizada a estado ${nextStatus}`);
+    return `Orden ${id} actualizada a estado ${nextStatus}`;
   }
+
 
   private static advanceStatusOrder(current: OrderStatus): OrderStatus {
     const nextState = this.transitionsStates[current];
