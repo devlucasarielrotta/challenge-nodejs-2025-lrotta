@@ -11,7 +11,7 @@ import { OrderStatus } from './enums/orderStatus.enum';
 export class Order extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column({ type: DataType.UUIDV4 })
+  @Column({ type: DataType.UUID})
   declare id: string;
 
   @AllowNull(false)

@@ -2,17 +2,19 @@ import { AllowNull,BelongsTo,Column,DataType,Default,ForeignKey,Model,PrimaryKey
 
 import { Order } from './order.entity';
 
-@Table
+@Table({
+    timestamps:false
+})
 export class OrderItem extends Model {
 
   @PrimaryKey
   @Default(DataType.UUIDV4)
-  @Column({ type: DataType.UUIDV4 })
+  @Column({ type: DataType.UUID })
   declare id: string;
 
   @AllowNull(false)
   @ForeignKey(() => Order)
-  @Column({ type: DataType.UUIDV4 })
+  @Column({ type: DataType.UUID })
   declare orderId: string;
 
   @BelongsTo(() => Order, {
