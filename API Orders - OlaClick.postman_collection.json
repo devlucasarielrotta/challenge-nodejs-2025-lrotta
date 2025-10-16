@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "3b1010a7-9aae-42c0-bd5c-4a35508d2274",
+		"name": "API Orders - OlaClick",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23402307"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n  \"clientName\": \"Ana López\",\r\n  \"items\": [\r\n    { \"description\": \"Ceviche\", \"quantity\": 2, \"unitPrice\": 50 },\r\n    { \"description\": \"Chicha morada\", \"quantity\": 1, \"unitPrice\": 10 }\r\n  ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n  \"clientName\": \"Ana López\",\r\n  \"items\": [\r\n    { \"description\": \"Ceviche\", \"quantity\": 2, \"unitPrice\": 50 },\r\n    { \"description\": \"Chicha morada\", \"quantity\": 1, \"unitPrice\": 10 }\r\n  ]\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "480"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e0-XbqKYQnUYID1HHy9fThhzcYoGCw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 12:43:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\",\n    \"clientName\": \"Ana López\",\n    \"status\": \"initiated\",\n    \"items\": [\n        {\n            \"id\": \"fed546e1-dec4-49ac-91b5-7d9c65af050e\",\n            \"description\": \"Ceviche\",\n            \"quantity\": 2,\n            \"unitPrice\": 50,\n            \"orderId\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\"\n        },\n        {\n            \"id\": \"c415a13b-6335-4037-bf4d-d9b8bec683b9\",\n            \"description\": \"Chicha morada\",\n            \"quantity\": 1,\n            \"unitPrice\": 10,\n            \"orderId\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\"\n        }\n    ],\n    \"updatedAt\": \"2025-10-16T12:43:56.850Z\",\n    \"createdAt\": \"2025-10-16T12:43:56.850Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Advance Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/orders/7a5e729c-d52d-4410-a342-d5d563f2303f/advance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"7a5e729c-d52d-4410-a342-d5d563f2303f",
+								"advance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Advance Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/orders/7a5e729c-d52d-4410-a342-d5d563f2303f/advance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders",
+										"7a5e729c-d52d-4410-a342-d5d563f2303f",
+										"advance"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-r811azEAqpGh/wgXP7v8hP2vJRc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 12:46:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{ message: Orden 7a5e729c-d52d-4410-a342-d5d563f2303f actualizada a estado sent}"
+						}
+					]
+				},
+				{
+					"name": "Get Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5868"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16ec-Bs+3BkAellhrPDoUEIjScVM+lIg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 12:45:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"total\": 12,\n    \"orders\": [\n        {\n            \"id\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n            \"clientName\": \"Ana López\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T12:44:15.088Z\",\n            \"updatedAt\": \"2025-10-16T12:44:15.088Z\",\n            \"items\": [\n                {\n                    \"id\": \"e5c6ae86-1130-47c7-8e19-06f5221f2d25\",\n                    \"orderId\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n                    \"description\": \"Chicha morada\",\n                    \"quantity\": 1,\n                    \"unitPrice\": 10\n                },\n                {\n                    \"id\": \"15a9491e-fca6-4cf0-a213-caed5af85683\",\n                    \"orderId\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n                    \"description\": \"Ceviche\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 50\n                }\n            ]\n        },\n        {\n            \"id\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\",\n            \"clientName\": \"Ana López\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T12:43:56.850Z\",\n            \"updatedAt\": \"2025-10-16T12:43:56.850Z\",\n            \"items\": [\n                {\n                    \"id\": \"c415a13b-6335-4037-bf4d-d9b8bec683b9\",\n                    \"orderId\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\",\n                    \"description\": \"Chicha morada\",\n                    \"quantity\": 1,\n                    \"unitPrice\": 10\n                },\n                {\n                    \"id\": \"fed546e1-dec4-49ac-91b5-7d9c65af050e\",\n                    \"orderId\": \"a3bdf96f-a353-42f5-aba1-4cc41e97c02b\",\n                    \"description\": \"Ceviche\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 50\n                }\n            ]\n        },\n        {\n            \"id\": \"e20419f9-a03b-4a68-a771-77ee5e99a35c\",\n            \"clientName\": \"Cliente 10\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.967Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.967Z\",\n            \"items\": [\n                {\n                    \"id\": \"d8de9bea-ded6-473c-a65c-eeeaf35a65c1\",\n                    \"orderId\": \"e20419f9-a03b-4a68-a771-77ee5e99a35c\",\n                    \"description\": \"Item principal 10\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 23\n                },\n                {\n                    \"id\": \"e48e5e42-2830-40d0-a71f-9b1ff9c71dd1\",\n                    \"orderId\": \"e20419f9-a03b-4a68-a771-77ee5e99a35c\",\n                    \"description\": \"Item extra 10\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 26\n                }\n            ]\n        },\n        {\n            \"id\": \"cf7fcd48-5160-4640-926c-334260fe1dea\",\n            \"clientName\": \"Cliente 9\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.683Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.683Z\",\n            \"items\": [\n                {\n                    \"id\": \"738072bf-a579-4c4f-b3ab-cb5f0474854a\",\n                    \"orderId\": \"cf7fcd48-5160-4640-926c-334260fe1dea\",\n                    \"description\": \"Item extra 9\",\n                    \"quantity\": 1,\n                    \"unitPrice\": 21\n                },\n                {\n                    \"id\": \"5718a734-5066-408f-a160-650ff6eb678f\",\n                    \"orderId\": \"cf7fcd48-5160-4640-926c-334260fe1dea\",\n                    \"description\": \"Item principal 9\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 10\n                }\n            ]\n        },\n        {\n            \"id\": \"885cb291-4768-4c3c-bc5f-65ff6230082d\",\n            \"clientName\": \"Cliente 8\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.483Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.483Z\",\n            \"items\": [\n                {\n                    \"id\": \"acda3a8e-e974-4144-89dc-7720b8ea29c9\",\n                    \"orderId\": \"885cb291-4768-4c3c-bc5f-65ff6230082d\",\n                    \"description\": \"Item extra 8\",\n                    \"quantity\": 3,\n                    \"unitPrice\": 36\n                },\n                {\n                    \"id\": \"10bc7fa3-909e-474f-a5b7-3b2ececc3e7f\",\n                    \"orderId\": \"885cb291-4768-4c3c-bc5f-65ff6230082d\",\n                    \"description\": \"Item principal 8\",\n                    \"quantity\": 4,\n                    \"unitPrice\": 97\n                }\n            ]\n        },\n        {\n            \"id\": \"058988e5-378e-44cb-a825-c8ac50e8eb28\",\n            \"clientName\": \"Cliente 7\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.400Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.400Z\",\n            \"items\": [\n                {\n                    \"id\": \"d261af0c-8cd0-41a2-b616-03932f11e647\",\n                    \"orderId\": \"058988e5-378e-44cb-a825-c8ac50e8eb28\",\n                    \"description\": \"Item principal 7\",\n                    \"quantity\": 4,\n                    \"unitPrice\": 91\n                },\n                {\n                    \"id\": \"1304ac5d-8085-4241-b78d-9a0ad4ecd110\",\n                    \"orderId\": \"058988e5-378e-44cb-a825-c8ac50e8eb28\",\n                    \"description\": \"Item extra 7\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 32\n                }\n            ]\n        },\n        {\n            \"id\": \"d266c0e4-fac1-44c0-8f95-c8542273a9bc\",\n            \"clientName\": \"Cliente 6\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.342Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.342Z\",\n            \"items\": [\n                {\n                    \"id\": \"c5250046-db90-4aef-bde8-184096b9127b\",\n                    \"orderId\": \"d266c0e4-fac1-44c0-8f95-c8542273a9bc\",\n                    \"description\": \"Item extra 6\",\n                    \"quantity\": 3,\n                    \"unitPrice\": 28\n                },\n                {\n                    \"id\": \"c0d7fb57-b9e3-4d02-96b8-5ce467ceb2f3\",\n                    \"orderId\": \"d266c0e4-fac1-44c0-8f95-c8542273a9bc\",\n                    \"description\": \"Item principal 6\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 45\n                }\n            ]\n        },\n        {\n            \"id\": \"0c008633-577b-43b4-b752-4cdaffb168fa\",\n            \"clientName\": \"Cliente 5\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.284Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.284Z\",\n            \"items\": [\n                {\n                    \"id\": \"6d3e4e49-68be-43f8-b0cb-c55cd95608c4\",\n                    \"orderId\": \"0c008633-577b-43b4-b752-4cdaffb168fa\",\n                    \"description\": \"Item principal 5\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 29\n                },\n                {\n                    \"id\": \"181cbe23-82f8-4940-a32b-585cbe1cc573\",\n                    \"orderId\": \"0c008633-577b-43b4-b752-4cdaffb168fa\",\n                    \"description\": \"Item extra 5\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 51\n                }\n            ]\n        },\n        {\n            \"id\": \"47929541-3ec5-45db-bfb7-ba3db86005c5\",\n            \"clientName\": \"Cliente 4\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.234Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.234Z\",\n            \"items\": [\n                {\n                    \"id\": \"d53d9859-eca0-47fb-9b67-b068d4be8b56\",\n                    \"orderId\": \"47929541-3ec5-45db-bfb7-ba3db86005c5\",\n                    \"description\": \"Item principal 4\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 28\n                },\n                {\n                    \"id\": \"b8ecef1a-38bc-4209-b733-16df01bb59a6\",\n                    \"orderId\": \"47929541-3ec5-45db-bfb7-ba3db86005c5\",\n                    \"description\": \"Item extra 4\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 34\n                }\n            ]\n        },\n        {\n            \"id\": \"8b24c123-e6c9-4f3c-b8c9-e1448c7da784\",\n            \"clientName\": \"Cliente 3\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.175Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.175Z\",\n            \"items\": [\n                {\n                    \"id\": \"4cbdf14a-5763-4eaa-ac10-369d82838ee9\",\n                    \"orderId\": \"8b24c123-e6c9-4f3c-b8c9-e1448c7da784\",\n                    \"description\": \"Item extra 3\",\n                    \"quantity\": 2,\n                    \"unitPrice\": 40\n                },\n                {\n                    \"id\": \"14a5f014-a2e3-4632-ac5e-dbbcb3fad2a5\",\n                    \"orderId\": \"8b24c123-e6c9-4f3c-b8c9-e1448c7da784\",\n                    \"description\": \"Item principal 3\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 72\n                }\n            ]\n        },\n        {\n            \"id\": \"da1aa7d1-f98a-4ac7-82a6-46220e851c49\",\n            \"clientName\": \"Cliente 2\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:58.112Z\",\n            \"updatedAt\": \"2025-10-16T04:00:58.112Z\",\n            \"items\": [\n                {\n                    \"id\": \"84b11a74-02f0-4f1a-87c2-e973ece0147d\",\n                    \"orderId\": \"da1aa7d1-f98a-4ac7-82a6-46220e851c49\",\n                    \"description\": \"Item extra 2\",\n                    \"quantity\": 1,\n                    \"unitPrice\": 20\n                },\n                {\n                    \"id\": \"c4834e47-82e9-4866-a532-b8a6d70fc9b4\",\n                    \"orderId\": \"da1aa7d1-f98a-4ac7-82a6-46220e851c49\",\n                    \"description\": \"Item principal 2\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 60\n                }\n            ]\n        },\n        {\n            \"id\": \"6234b49c-a64c-4737-81df-02e4d0ea00fe\",\n            \"clientName\": \"Cliente 1\",\n            \"status\": \"initiated\",\n            \"createdAt\": \"2025-10-16T04:00:57.994Z\",\n            \"updatedAt\": \"2025-10-16T04:00:57.994Z\",\n            \"items\": [\n                {\n                    \"id\": \"08e44e0a-9a15-41e6-b3c5-a0508a412322\",\n                    \"orderId\": \"6234b49c-a64c-4737-81df-02e4d0ea00fe\",\n                    \"description\": \"Item principal 1\",\n                    \"quantity\": 5,\n                    \"unitPrice\": 22\n                },\n                {\n                    \"id\": \"197b4f70-5cd7-4b50-804b-88c77f6f8838\",\n                    \"orderId\": \"6234b49c-a64c-4737-81df-02e4d0ea00fe\",\n                    \"description\": \"Item extra 1\",\n                    \"quantity\": 3,\n                    \"unitPrice\": 24\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/orders/7a5e729c-d52d-4410-a342-d5d563f2303f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"7a5e729c-d52d-4410-a342-d5d563f2303f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Order By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/orders/7a5e729c-d52d-4410-a342-d5d563f2303f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders",
+										"7a5e729c-d52d-4410-a342-d5d563f2303f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1db-hJd59UEmcG7O8Zoi78vdTYcZMn4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 12:46:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n    \"clientName\": \"Ana López\",\n    \"status\": \"sent\",\n    \"createdAt\": \"2025-10-16T12:44:15.088Z\",\n    \"updatedAt\": \"2025-10-16T12:46:23.203Z\",\n    \"items\": [\n        {\n            \"id\": \"15a9491e-fca6-4cf0-a213-caed5af85683\",\n            \"orderId\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n            \"description\": \"Ceviche\",\n            \"quantity\": 2,\n            \"unitPrice\": 50\n        },\n        {\n            \"id\": \"e5c6ae86-1130-47c7-8e19-06f5221f2d25\",\n            \"orderId\": \"7a5e729c-d52d-4410-a342-d5d563f2303f\",\n            \"description\": \"Chicha morada\",\n            \"quantity\": 1,\n            \"unitPrice\": 10\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SEED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/seed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seed"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SEED",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/seed",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"seed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-spJ5WBWuO29zJF0fkr7IrXnEQXM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 12:47:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Seed de órdenes completado!\"\n}"
+						}
+					]
+				}
+			],
+			"description": "# Orders API - Challenge OlaClick\n\nColección Postman para probar el módulo de Órdenes (Orders) desarrollado en NestJS. Incluye todos los endpoints junto con ejemplos y con entradas y salidas esperadas\n\n# Enpoints disponibles\n\n- POST Create Order -> path : / orders\n    \n- POST Advance Order -> path: /orders/:id/advance\n    \n- GET Orders -> path: /orders\n    \n- GET Order by ID -> Path: /:orders/id\n    \n- GET SEED -> Path: /seed\n    \n\n# Recorda correr el endpoint SEED para poblar la base"
+		}
+	]
+}
