@@ -47,7 +47,6 @@ describe('OrdersService', () => {
 
     service = new OrdersService(
       orderModel as unknown as typeof Order,
-      orderItemModel as unknown as typeof OrderItem,
       sequelize,
       cacheManager,
     );
