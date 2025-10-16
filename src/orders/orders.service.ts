@@ -106,7 +106,7 @@ export class OrdersService {
 
 
 
-  async advanceStatus(id: string): Promise<string> {
+  async advanceStatus(id: string): Promise<{message: string}> {
 
     const order = await this.findOne(id)
 
@@ -117,7 +117,7 @@ export class OrdersService {
       await this.cacheManager.del(OrdersService.CACHE_KEY_ACTIVE_ORDERS);
 
       this.logger.log(`Orden ${id} entregada y eliminada.`);
-      return `Orden ${id} entregada (eliminada del sistema).`;
+      return {message:`Orden ${id} entregada (eliminada del sistema).`};
     }
 
 
@@ -127,7 +127,7 @@ export class OrdersService {
     await this.cacheManager.del(OrdersService.CACHE_KEY_ACTIVE_ORDERS);
 
     this.logger.log(`Orden ${id} actualizada a estado ${nextStatus}`);
-    return `Orden ${id} actualizada a estado ${nextStatus}`;
+    return {message: `Orden ${id} actualizada a estado ${nextStatus}`};
   }
 
 
