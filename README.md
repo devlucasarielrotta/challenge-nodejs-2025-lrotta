@@ -37,5 +37,5 @@ npm run test
 - Se utilizo Redis con 30 segundos de TTL para el cache de las órdenes. 
 - Se utiliza ConfigModule para obtener las variables de entorno 
 
-# Author
+# Autor
 - Lucas Ariel Rotta
