@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import KeyvRedis from '@keyv/redis';
 
@@ -23,8 +24,6 @@ import { OrderItem } from './orders/entities/order-item.entity';
       inject: [ConfigService],
       isGlobal: true,
     }),
-    OrdersModule,
-    SeedModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DB_HOST, 
@@ -35,7 +34,10 @@ import { OrderItem } from './orders/entities/order-item.entity';
       synchronize: true,
       autoLoadModels: true,
       models: [Order, OrderItem],
-    })
+    }),
+    ScheduleModule.forRoot(),
+    OrdersModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],
