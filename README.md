@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-# Ola click challenge
+# Olaclick challenge
 Este proyecto es un desafio de olaclick, el cual consiste en crear una API REST  simple usando Node.js con Nest.js, PostgreSQL con Sequelize y Redis.
 
 # Orders API - Correr con docker 
