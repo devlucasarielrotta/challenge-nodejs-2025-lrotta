@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { ConfigService } from '@nestjs/config';
 
 import { Op } from 'sequelize';
 
@@ -12,16 +13,19 @@ import { OrderStatus } from '../entities/enums/orderStatus.enum';
 export class CleanupOrdersJob {
   private readonly logger = new Logger(CleanupOrdersJob.name);
 
-  constructor(private readonly ordersService: OrdersService) {}
+  constructor(
+    private readonly ordersService: OrdersService,
+    private readonly configService: ConfigService
+  ) {}
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async handleOldOrders() {
     this.logger.log('Limpinado ordenes entregadas.');
-    
+    const cleanupDays = Number(this.configService.get('CLEANUP_DAYS') || 90);
     const ordersModel = (this.ordersService as any).orderModel as typeof Order;
-
+  
     const limitDate = new Date();
-    limitDate.setDate(limitDate.getDate() - 90);
+    limitDate.setDate(limitDate.getDate() - cleanupDays);
 
     const deletedCount = await ordersModel.destroy({
       where: {
