@@ -26,9 +26,6 @@ export class OrdersService {
     @InjectModel(Order)
     private readonly orderModel: typeof Order,
 
-    @InjectModel(OrderItem)
-    private readonly orderItemModeL: typeof OrderItem,
-
     @InjectConnection()
     private readonly sequelize: Sequelize,
 
