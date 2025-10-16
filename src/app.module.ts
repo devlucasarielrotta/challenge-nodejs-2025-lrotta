@@ -18,7 +18,7 @@ import { OrderItem } from './orders/entities/order-item.entity';
     CacheModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        store: new KeyvRedis(configService.get('REDIS_URL') || 'redis://localhost:6379'),
+        store: new KeyvRedis(configService.get<string>('REDIS_URL') || 'redis://localhost:6379'),
         ttl: 30000,
       }),
       inject: [ConfigService],
@@ -28,11 +28,11 @@ import { OrderItem } from './orders/entities/order-item.entity';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         dialect: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: +configService.get('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_NAME'),
         autoLoadModels: true,
         synchronize: true,
         models: [Order, OrderItem],
